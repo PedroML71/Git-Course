@@ -26,9 +26,14 @@ public class App
         ContaPagar ContaMerc = new ContaPagar("Compras do mes",
          390d, "10/12/2020", mercado);
 
+        //pagamento de conta pendente, deve funcionar.
         ContaImo.pagar();
+        
+        //pagamento de conta cancelada , nao deve funcionar
+        ContaMerc.cancelar();
         ContaMerc.pagar();
 
-        
+        //pagamento de conta que ja esta paga, nao deve funcionar
+        ContaImo.pagar();
     }
 }
