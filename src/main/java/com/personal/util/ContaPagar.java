@@ -10,11 +10,16 @@ public class ContaPagar{
     private String descricao;
     private Double valor;
     private String dataVencimento;
-    private Fornecedor fornecedor;
+	private Fornecedor fornecedor;
+	private SituacaoConta situacaoConta;
 
-    public ContaPagar(){}
+    public ContaPagar(){
+		this.situacaoConta = SituacaoConta.PENDENTE;
+	}
 
 	public ContaPagar(String descricao, Double valor, String dataVencimento, Fornecedor fornecedor) {
+		this();
+
 		this.descricao = descricao;
 		this.valor = valor;
 		this.dataVencimento = dataVencimento;
@@ -52,15 +57,59 @@ public class ContaPagar{
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
-    
-    public void pagar(){
-        System.out.println("******************************");
-        System.out.printf("Descricao da conta: %s\n", this.getDescricao());
-        System.out.printf("Valor: %f\n", this.getValor());
-        System.out.printf("Data de Vencimento: %s\n", this.getDataVencimento());
-        System.out.printf("Fornecedor: %s\n", this.getFornecedor().getNome());
-        System.out.println();
-    }
 
+	public SituacaoConta getSituacaoConta() {
+		return situacaoConta;
+	}
+
+	public void setSituacaoConta(SituacaoConta situacaoConta) {
+		this.situacaoConta = situacaoConta;
+	}
+	
+	/**
+	 * Classe responsavel por verificar o estado da conta e realizar o pagamento.
+	 * 
+	 * @since 2.0.0
+	 */
+    public void pagar(){
+        if(SituacaoConta.PAGA.equals(this.getSituacaoConta())){
+			System.out.println("Nao pode pagar algo que ja esta pago");
+		}
+
+		else if(SituacaoConta.CANCELADA.equals(this.getSituacaoConta())){
+			System.out.println("nao pode pagar algo que ja esta cancelado");
+		}
+
+		else{
+			System.out.println("*******************");
+			System.out.printf("Pagando Conta: %s\n" , this.getDescricao());
+			System.out.printf("Valor: %.2f\n" , this.getValor());
+			System.out.printf("Vencimento em: %s\n" , this.getDataVencimento());
+			System.out.printf("Fornecedor: %s\n" , this.getFornecedor().getNome());
+			System.out.println();
+
+			this.situacaoConta = SituacaoConta.PAGA;
+		}
+	}
+
+	/**
+	 * Classe responsavel por verificar o estado da conta e realizar o cancelamento.
+	 * 
+	 * @since 2.0.0
+	 */
+	public void cancelar(){
+		if(SituacaoConta.PAGA.equals(this.getSituacaoConta())){
+			System.out.println("Esta conta ja esta paga!");
+		}
+
+		else if(SituacaoConta.CANCELADA.equals(this.getSituacaoConta())){
+			System.out.println("esta conta ja foi cancelada!");
+		}
+
+		else{
+			System.out.printf("Cancelando a conta: %s\n" , this.getDescricao());
+			this.situacaoConta = SituacaoConta.CANCELADA;
+		}
+	}
 
 }
