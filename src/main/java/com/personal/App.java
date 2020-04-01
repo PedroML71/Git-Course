@@ -1,11 +1,14 @@
 package com.personal;
 
+import com.personal.model.Cliente;
 import com.personal.model.Fornecedor;
 import com.personal.util.ContaPagar;
+import com.personal.util.ContaReceber;
 
 /**
  * Classe responsavel por inicializar a aplicacao
  * 
+ * @since 1.0.0
  */
 public class App 
 {
@@ -13,27 +16,41 @@ public class App
     {
         Fornecedor imobiliaria = new Fornecedor();
         imobiliaria.setNome("Casa & Cia Negocios Imobiliarios");
-       
         Fornecedor mercado = new Fornecedor();
         mercado.setNome("Mercado so joao");
 
-        ContaPagar ContaImo = new ContaPagar();
-        ContaImo.setDataVencimento("10/05/2020");
-        ContaImo.setDescricao("Aluguel da matriz");
-        ContaImo.setFornecedor(mercado);
-        ContaImo.setValor(1230d);
+        Cliente atacadista = new Cliente();
+        atacadista.setNome("Triangulo Quadrado Atacadista");
+        Cliente telecom = new Cliente();
+        telecom.setNome("FoneNet Telecomunicacoes");
 
-        ContaPagar ContaMerc = new ContaPagar("Compras do mes",
+        ContaPagar contaImo = new ContaPagar();
+        contaImo.setDataVencimento("10/05/2020");
+        contaImo.setDescricao("Aluguel da matriz");
+        contaImo.setFornecedor(imobiliaria);
+        contaImo.setValor(1230d);
+
+        ContaPagar contaMerc = new ContaPagar("Compras do mes",
          390d, "10/12/2020", mercado);
 
-        //pagamento de conta pendente, deve funcionar.
-        ContaImo.pagar();
-        
-        //pagamento de conta cancelada , nao deve funcionar
-        ContaMerc.cancelar();
-        ContaMerc.pagar();
 
-        //pagamento de conta que ja esta paga, nao deve funcionar
-        ContaImo.pagar();
+        ContaReceber recAtacadista = new ContaReceber();
+        recAtacadista.setDescricao("Desenvolvimento de projeto de logistica de Java");
+        recAtacadista.setValor(89500d);
+        recAtacadista.setDataVencimento("23/05/2020");
+        recAtacadista.setCliente(atacadista);
+
+        ContaReceber recTelecom = new ContaReceber(telecom, "Manutencao em sistema de conta online",
+         52300d, "13/05.2012");
+
+
+        //pagamento e calcelamento de contas a pagar.
+        contaImo.pagar();
+        contaMerc.cancelar();
+        
+        //pagamento e cancelamento de contas a receber
+        recAtacadista.receber();
+        recTelecom.cancelar();
     }
+      
 }

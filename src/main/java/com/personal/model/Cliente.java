@@ -3,10 +3,10 @@ package com.personal.model;
 import com.personal.generic.Pessoa;
 
 /**
- * Representa um fornecedor que extende de pessoa
+ * representa um cliente que extende de Pessoa
  * 
  * @since 3.0.0
  */
-public class Fornecedor extends Pessoa{
+public class Cliente extends Pessoa{
 
 }

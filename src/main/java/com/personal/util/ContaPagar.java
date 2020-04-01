@@ -1,54 +1,28 @@
 package com.personal.util;
 
+import com.personal.generic.Conta;
 import com.personal.model.Fornecedor;
 /**
  * Classe resposnavel por gerenciar os pagamentos que o usuario tem com algum fornecedor.
  * 
+ * @since 1.0.0
  */
-public class ContaPagar{
+public class ContaPagar extends Conta{
 
-    private String descricao;
-    private Double valor;
-    private String dataVencimento;
 	private Fornecedor fornecedor;
-	private SituacaoConta situacaoConta;
+	
 
     public ContaPagar(){
-		this.situacaoConta = SituacaoConta.PENDENTE;
+		super();
 	}
 
 	public ContaPagar(String descricao, Double valor, String dataVencimento, Fornecedor fornecedor) {
-		this();
-
-		this.descricao = descricao;
-		this.valor = valor;
-		this.dataVencimento = dataVencimento;
+		super();
+		this.setDescricao(descricao);
+		this.setValor(valor);
+		this.setDataVencimento(dataVencimento);
 		this.fornecedor = fornecedor;
     }
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public Double getValor() {
-		return valor;
-	}
-
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
-
-	public String getDataVencimento() {
-		return dataVencimento;
-	}
-
-	public void setDataVencimento(String dataVencimento) {
-		this.dataVencimento = dataVencimento;
-	}
 
 	public Fornecedor getFornecedor() {
 		return fornecedor;
@@ -58,16 +32,10 @@ public class ContaPagar{
 		this.fornecedor = fornecedor;
 	}
 
-	public SituacaoConta getSituacaoConta() {
-		return situacaoConta;
-	}
-
-	public void setSituacaoConta(SituacaoConta situacaoConta) {
-		this.situacaoConta = situacaoConta;
-	}
 	
 	/**
-	 * Classe responsavel por verificar o estado da conta e realizar o pagamento.
+	 * Classe responsavel por verificar o estado 
+	 * da conta e realizar o pagamento a um fornecedor.
 	 * 
 	 * @since 2.0.0
 	 */
@@ -92,24 +60,5 @@ public class ContaPagar{
 		}
 	}
 
-	/**
-	 * Classe responsavel por verificar o estado da conta e realizar o cancelamento.
-	 * 
-	 * @since 2.0.0
-	 */
-	public void cancelar(){
-		if(SituacaoConta.PAGA.equals(this.getSituacaoConta())){
-			System.out.println("Esta conta ja esta paga!");
-		}
-
-		else if(SituacaoConta.CANCELADA.equals(this.getSituacaoConta())){
-			System.out.println("esta conta ja foi cancelada!");
-		}
-
-		else{
-			System.out.printf("Cancelando a conta: %s\n" , this.getDescricao());
-			this.situacaoConta = SituacaoConta.CANCELADA;
-		}
-	}
-
+	
 }
