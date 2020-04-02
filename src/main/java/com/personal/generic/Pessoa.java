@@ -5,7 +5,7 @@ package com.personal.generic;
  * 
  * @since 3.0.0
  */
-public class Pessoa{
+public abstract class Pessoa{
 
     private String nome;
 

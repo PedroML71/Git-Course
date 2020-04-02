@@ -82,4 +82,18 @@ public class ContaReceber extends Conta{
         }
     }
 
+	@Override
+	public void exibirDetalhes() {
+		System.out.println("Conta a receber");
+		System.out.printf("Cliente: %s\n" , this.getCliente().getNome());
+		System.out.printf("Descricao: %s\n" , this.getDescricao());
+		System.out.printf("Valor: %.2f\n" , this.getValor());
+		System.out.printf("Data de Vencimento: %s\n" , this.getDataVencimento());
+		System.out.println("Situacao Conta: " + this.getSituacaoConta());
+		System.out.println("*******************");
+		
+	}
+
+    
+
 }
