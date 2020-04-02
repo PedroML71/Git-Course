@@ -1,9 +1,16 @@
 package com.personal;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import com.personal.generic.Conta;
 import com.personal.model.Cliente;
 import com.personal.model.Fornecedor;
 import com.personal.util.ContaPagar;
 import com.personal.util.ContaReceber;
+import com.personal.util.RelatorioContas;
 
 /**
  * Classe responsavel por inicializar a aplicacao
@@ -43,6 +50,15 @@ public class App
         ContaReceber recTelecom = new ContaReceber(telecom, "Manutencao em sistema de conta online",
          52300d, "13/05.2012");
 
+        
+        RelatorioContas relatorio = new RelatorioContas();
+        Set<Conta> conta = new HashSet<>();
+        conta.add(contaImo);
+        conta.add(contaMerc);
+        conta.add(recAtacadista);
+        conta.add(contaMerc);
+
+        relatorio.exibirListagem(conta);
 
         //pagamento e calcelamento de contas a pagar.
         contaImo.pagar();

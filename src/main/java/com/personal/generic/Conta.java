@@ -7,7 +7,7 @@ import com.personal.util.SituacaoConta;
  * 
  * @since 3.0.0
  */
-public class Conta{
+public abstract class Conta{
 
     private String descricao;
     private Double valor;
@@ -61,6 +61,7 @@ public class Conta{
             
             this.situacaoConta = SituacaoConta.CANCELADA;
         }
-    }
-    
+	}
+	
+	public abstract void exibirDetalhes();
 }

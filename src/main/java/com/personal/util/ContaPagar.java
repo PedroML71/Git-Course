@@ -60,5 +60,15 @@ public class ContaPagar extends Conta{
 		}
 	}
 
-	
+	@Override
+	public void exibirDetalhes() {
+		System.out.println("Conta a pagar");
+		System.out.printf("Fornecedor: %s\n" , this.getFornecedor().getNome());
+		System.out.printf("Descricao: %s\n" , this.getDescricao());
+		System.out.printf("Valor: %.2f\n" , this.getValor());
+		System.out.printf("Data de Vencimento: %s\n" , this.getDataVencimento());
+		System.out.println("Situacao Conta: " + this.getSituacaoConta());
+		System.out.println("*******************");
+	}
+
 }
